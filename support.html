@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Beatprix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #1A3A52;
+            --accent: #2ECC71;
+            --bg: #F8F9FA;
+            --surface: #FFFFFF;
+            --text: #212529;
+            --text-secondary: #6C757D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--accent) 0%, #27AE60 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .contact-card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .contact-icon.email {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF8555 100%);
+        }
+
+        .contact-icon.twitter {
+            background: linear-gradient(135deg, #1DA1F2 0%, #0D8BD9 100%);
+        }
+
+        .contact-icon.faq {
+            background: linear-gradient(135deg, var(--secondary) 0%, #2A4A62 100%);
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .faq-section {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .faq-section h2 {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #E9ECEF;
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .faq-question::before {
+            content: "Q";
+            background: var(--primary);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            padding-left: 36px;
+        }
+
+        .app-version {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background: var(--surface);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .app-version p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .app-version strong {
+            color: var(--text);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .faq-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Support Center</h1>
+        <p>We're here to help</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+        </a>
+
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon email">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <h3>Email Support</h3>
+                <p>Get help within 24-48 hours</p>
+                <a href="mailto:support@beatprix.com">support@beatprix.com</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon twitter">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </div>
+                <h3>Social Media</h3>
+                <p>Follow us for updates</p>
+                <a href="https://twitter.com/beatprixapp" target="_blank">@beatprixapp</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon faq">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <h3>FAQ</h3>
+                <p>Find quick answers below</p>
+                <a href="#faq">View FAQ</a>
+            </div>
+        </div>
+
+        <div class="faq-section" id="faq">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I scan a barcode?</div>
+                <p class="faq-answer">Open Beatprix and tap the scan button on the home screen. Point your camera at the product barcode and hold steady. The app will automatically detect and scan the barcode.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Why can't I find my product?</div>
+                <p class="faq-answer">Not all products are in our database. We use Open Food Facts and other sources. If a product isn't found, try scanning again or check if the barcode is clear. Some regional or new products may not be available yet.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How accurate are the prices?</div>
+                <p class="faq-answer">Prices are gathered from publicly available sources and updated periodically. However, prices can change at any time. Always verify the actual price at the retailer before making a purchase.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do price alerts work?</div>
+                <p class="faq-answer">After scanning a product, tap "Set Price Alert" and enter your target price. When the price drops to or below your target, you'll receive a notification. Make sure notifications are enabled in your device settings.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Why am I not receiving notifications?</div>
+                <p class="faq-answer">Check that notifications are enabled for Beatprix in your device settings. On iOS, go to Settings > Beatprix > Notifications. On Android, go to Settings > Apps > Beatprix > Notifications.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I delete my data?</div>
+                <p class="faq-answer">Your data is stored locally on your device. To delete all data, you can either clear the app's data in your device settings or uninstall the app. No personal data is stored on our servers.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is Beatprix free?</div>
+                <p class="faq-answer">Yes! Beatprix is completely free to download and use. We may introduce optional premium features in the future, but core functionality will always remain free.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Which retailers are supported?</div>
+                <p class="faq-answer">We compare prices from major online retailers. The specific retailers may vary by region and product category. We're constantly adding new sources to provide more comprehensive price comparisons.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Can I suggest a feature?</div>
+                <p class="faq-answer">Absolutely! We love hearing from our users. Send your feature suggestions to feedback@beatprix.app and we'll consider them for future updates.</p>
+            </div>
+        </div>
+
+        <div class="app-version">
+            <p><strong>Beatprix</strong> Version 1.0.0</p>
+            <p>Made with love for smart shoppers</p>
+        </div>
+    </div>
+</body>
+</html>

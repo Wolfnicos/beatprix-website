@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Beatprix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --secondary: #1A3A52;
+            --accent: #2ECC71;
+            --bg: #F8F9FA;
+            --surface: #FFFFFF;
+            --text: #212529;
+            --text-secondary: #6C757D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #FF8555 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.05) 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            margin: 20px 0;
+        }
+
+        .highlight p {
+            margin: 0;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #E9ECEF;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy matters to us</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Back to Home
+        </a>
+
+        <div class="card">
+            <div class="highlight">
+                <p>Beatprix is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your information.</p>
+            </div>
+
+            <h2>Information We Collect</h2>
+            <p>Beatprix collects minimal data necessary to provide our price comparison service:</p>
+            <ul>
+                <li><strong>Barcode Scans:</strong> Product barcodes you scan are processed to find product information and prices. This data is stored locally on your device.</li>
+                <li><strong>Price Alerts:</strong> When you set price alerts, we store the product barcode and your target price locally on your device.</li>
+                <li><strong>Scan History:</strong> Your scanning history is stored locally on your device for your convenience.</li>
+                <li><strong>Crash Reports:</strong> Anonymous crash data helps us improve app stability (via Firebase Crashlytics).</li>
+                <li><strong>Analytics:</strong> Anonymous usage statistics help us understand how to improve the app (via Firebase Analytics).</li>
+            </ul>
+
+            <h2>How We Use Your Information</h2>
+            <ul>
+                <li>To provide price comparison results for scanned products</li>
+                <li>To send price alert notifications when prices drop</li>
+                <li>To maintain your scan history for easy access</li>
+                <li>To improve app performance and fix bugs</li>
+                <li>To understand usage patterns and improve features</li>
+            </ul>
+
+            <h2>Data Storage</h2>
+            <p>Your personal data (scan history, price alerts, preferences) is stored <strong>locally on your device</strong> using secure storage. We do not store your personal data on our servers.</p>
+            <p>Anonymous analytics and crash data is processed by Firebase (Google) in accordance with their privacy policy.</p>
+
+            <h2>Third-Party Services</h2>
+            <p>We use the following third-party services:</p>
+            <ul>
+                <li><strong>Firebase Analytics:</strong> Anonymous usage analytics</li>
+                <li><strong>Firebase Crashlytics:</strong> Crash reporting for app stability</li>
+                <li><strong>Open Food Facts:</strong> Product database for barcode lookups</li>
+                <li><strong>Various Retailers:</strong> Price data from public retail websites</li>
+            </ul>
+
+            <h2>Camera Permission</h2>
+            <p>Beatprix requires camera access solely for scanning product barcodes. We do not store, transmit, or process any images from your camera beyond the barcode scanning function.</p>
+
+            <h2>Notifications</h2>
+            <p>If you enable notifications, we will send you alerts when tracked product prices drop below your target. You can disable notifications at any time in your device settings.</p>
+
+            <h2>Data Sharing</h2>
+            <p>We do <strong>not</strong> sell, trade, or share your personal information with third parties. Anonymous analytics data may be processed by Firebase as described above.</p>
+
+            <h2>Data Retention</h2>
+            <p>Your local data remains on your device until you delete it or uninstall the app. Anonymous analytics data is retained according to Firebase's data retention policies.</p>
+
+            <h2>Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your data (stored locally on your device)</li>
+                <li>Delete your data by clearing app data or uninstalling</li>
+                <li>Opt-out of analytics in app settings</li>
+                <li>Disable notifications in device settings</li>
+            </ul>
+
+            <h2>Children's Privacy</h2>
+            <p>Beatprix is not intended for children under 13. We do not knowingly collect personal information from children.</p>
+
+            <h2>Changes to This Policy</h2>
+            <p>We may update this privacy policy from time to time. We will notify you of significant changes through the app or by updating the "Last Updated" date below.</p>
+
+            <h2>Contact Us</h2>
+            <p>If you have questions about this privacy policy or your data, please contact us at:</p>
+            <p><strong>Email:</strong> privacy@beatprix.com</p>
+
+            <p class="last-updated">Last Updated: November 26, 2025</p>
+        </div>
+    </div>
+</body>
+</html>
