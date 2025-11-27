@@ -699,10 +699,158 @@
             line-height: 1.7;
         }
 
+        /* ===== PRICING SECTION ===== */
+        .pricing {
+            padding: 120px 40px;
+            background: var(--bg-secondary);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.15);
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            background: linear-gradient(180deg, rgba(255, 107, 53, 0.05) 0%, var(--bg) 100%);
+        }
+
+        .pricing-card.popular::before {
+            content: 'BEST VALUE';
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .pricing-card .period {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+        }
+
+        .price {
+            margin-bottom: 24px;
+        }
+
+        .price .amount {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--text);
+            line-height: 1;
+        }
+
+        .price .currency {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            vertical-align: super;
+        }
+
+        .price .term {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 32px;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li svg {
+            flex-shrink: 0;
+        }
+
+        .pricing-btn {
+            display: block;
+            width: 100%;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-btn.primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            box-shadow: 0 4px 20px var(--glow);
+        }
+
+        .pricing-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--glow);
+        }
+
+        .pricing-btn.secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .pricing-btn.secondary:hover {
+            background: var(--surface-elevated);
+            border-color: var(--primary);
+        }
+
         /* ===== HOW IT WORKS ===== */
         .how-it-works {
             padding: 120px 40px;
-            background: var(--bg-secondary);
+            background: var(--bg);
         }
 
         .steps {
@@ -1007,8 +1155,20 @@
                 font-size: 1.1rem;
             }
 
-            .features, .how-it-works, .cta {
+            .features, .how-it-works, .cta, .pricing {
                 padding: 80px 20px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card {
+                padding: 32px 24px;
+            }
+
+            .price .amount {
+                font-size: 3rem;
             }
 
             .section-header h2, .cta h2 {
@@ -1079,6 +1239,7 @@
         </a>
         <ul class="nav-links">
             <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="support.html">Support</a></li>
         </ul>
@@ -1111,10 +1272,10 @@
                             <polyline points="7 10 12 15 17 10"/>
                             <line x1="12" y1="15" x2="12" y2="3"/>
                         </svg>
-                        Download Free
+                        Download Now
                     </a>
-                    <a href="#how-it-works" class="btn btn-secondary">
-                        See How It Works
+                    <a href="#pricing" class="btn btn-secondary">
+                        View Pricing
                     </a>
                 </div>
                 <div class="store-buttons" id="download">
@@ -1320,13 +1481,102 @@
             <div class="feature-card">
                 <div class="feature-icon free">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
-                        <path d="M12 18V6"/>
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                     </svg>
                 </div>
-                <h3>100% Free</h3>
-                <p>No subscription, no hidden fees. BeatPrix is completely free to use with all features included.</p>
+                <h3>Deal Ratings</h3>
+                <p>Our smart algorithm rates every deal so you know instantly if it's worth buying now or better to wait.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-header">
+            <h2>Simple Pricing</h2>
+            <p>Unlock premium features and never miss a deal</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Monthly</h3>
+                <p class="period">Flexible month-to-month</p>
+                <div class="price">
+                    <span class="currency">€</span><span class="amount">4.99</span><span class="term">/month</span>
+                </div>
+                <ul class="pricing-features">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Unlimited price comparisons
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Unlimited price alerts
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Full price history charts
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        30+ stores compared
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        No ads
+                    </li>
+                </ul>
+                <a href="#download" class="pricing-btn secondary">Get Started</a>
+            </div>
+            <div class="pricing-card popular">
+                <h3>Yearly</h3>
+                <p class="period">Best value - save 50%</p>
+                <div class="price">
+                    <span class="currency">€</span><span class="amount">29.99</span><span class="term">/year</span>
+                </div>
+                <p class="price-note">Only €2.50/month - Save €29.89!</p>
+                <ul class="pricing-features">
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Unlimited price comparisons
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Unlimited price alerts
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        Full price history charts
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        30+ stores compared
+                    </li>
+                    <li>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12"/>
+                        </svg>
+                        No ads
+                    </li>
+                </ul>
+                <a href="#download" class="pricing-btn primary">Get Started</a>
             </div>
         </div>
     </section>
@@ -1387,8 +1637,8 @@
                 <p>Average Savings</p>
             </div>
             <div class="stat">
-                <h3>Free</h3>
-                <p>Forever</p>
+                <h3>€2.50</h3>
+                <p>Per Month</p>
             </div>
         </div>
     </section>
@@ -1397,7 +1647,7 @@
     <section class="cta">
         <div class="cta-content">
             <h2>Stop Overpaying for Games</h2>
-            <p>Join thousands of gamers who never miss a deal. Download BeatPrix free today and start saving.</p>
+            <p>Join thousands of gamers who never miss a deal. Download BeatPrix today and start saving on every game purchase.</p>
             <div class="store-buttons" style="justify-content: center;">
                 <a href="#" class="store-btn">
                     <svg viewBox="0 0 24 24" fill="currentColor">
