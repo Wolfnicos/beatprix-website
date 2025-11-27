@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beatprix - Smart Price Comparison</title>
-    <meta name="description" content="Scan any product barcode and instantly compare prices across retailers. Set price alerts and never overpay again.">
-    <meta name="keywords" content="price comparison, barcode scanner, shopping app, best deals, price tracker">
+    <title>BeatPrix - Never Overpay for Games</title>
+    <meta name="description" content="Compare PC game prices across 30+ stores including Steam, GOG, Epic Games, and more. Find the best deals, track price history, and get alerts when prices drop.">
+    <meta name="keywords" content="game price comparison, steam deals, pc games, cheap games, game deals, price tracker, gaming deals">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Beatprix - Smart Price Comparison">
-    <meta property="og:description" content="Scan. Compare. Save. The smartest way to find the best prices.">
+    <meta property="og:title" content="BeatPrix - Never Overpay for Games">
+    <meta property="og:description" content="Compare prices across 30+ stores. Find the best deals on PC games.">
     <meta property="og:image" content="https://beatprix.com/og-image.png">
     <meta property="og:url" content="https://beatprix.com">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Beatprix - Smart Price Comparison">
-    <meta name="twitter:description" content="Scan. Compare. Save. The smartest way to find the best prices.">
+    <meta name="twitter:title" content="BeatPrix - Never Overpay for Games">
+    <meta name="twitter:description" content="Compare prices across 30+ stores. Find the best deals on PC games.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
@@ -25,22 +25,26 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --primary: #FF6B35;
             --primary-light: #FF8555;
             --secondary: #1A3A52;
-            --accent: #2ECC71;
-            --bg: #0A0A0F;
-            --bg-gradient: linear-gradient(180deg, #0A0A0F 0%, #12121A 100%);
-            --surface: #16161F;
-            --surface-elevated: #1E1E2A;
-            --text: #FFFFFF;
-            --text-secondary: #8B8B9E;
-            --border: rgba(255,255,255,0.1);
+            --accent: #3FB950;
+            --accent-glow: rgba(63, 185, 80, 0.4);
+            --bg: #0D1117;
+            --bg-secondary: #161B22;
+            --surface: #21262D;
+            --surface-elevated: #30363D;
+            --text: #F0F6FC;
+            --text-secondary: #8B949E;
+            --border: rgba(240, 246, 252, 0.1);
             --glow: rgba(255, 107, 53, 0.4);
+            --steam-blue: #1B2838;
+            --epic-purple: #2A0A4E;
+            --gog-purple: #8B00FF;
         }
 
         * {
@@ -68,11 +72,11 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 40px;
+            padding: 16px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(13, 17, 23, 0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
@@ -88,18 +92,19 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px var(--glow);
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 36px;
             list-style: none;
         }
 
@@ -115,9 +120,9 @@
         }
 
         .nav-cta {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             color: white;
-            padding: 12px 24px;
+            padding: 12px 28px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
@@ -148,18 +153,20 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(46, 204, 113, 0.1) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(63, 185, 80, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 50%, rgba(139, 0, 255, 0.05) 0%, transparent 40%);
+            animation: float 25s ease-in-out infinite;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(-30px, -30px); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-20px, -20px) rotate(1deg); }
+            66% { transform: translate(20px, -10px) rotate(-1deg); }
         }
 
         .hero-content {
-            max-width: 1200px;
+            max-width: 1300px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
@@ -169,58 +176,56 @@
         }
 
         .hero-text {
-            max-width: 600px;
+            max-width: 620px;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(255, 107, 53, 0.1);
-            border: 1px solid rgba(255, 107, 53, 0.3);
-            color: var(--primary);
-            padding: 8px 16px;
+            gap: 10px;
+            background: rgba(63, 185, 80, 0.1);
+            border: 1px solid rgba(63, 185, 80, 0.3);
+            color: var(--accent);
+            padding: 10px 18px;
             border-radius: 100px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .badge-dot {
             width: 8px;
             height: 8px;
-            background: var(--primary);
+            background: var(--accent);
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(63, 185, 80, 0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(63, 185, 80, 0); }
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
+            font-size: 4.2rem;
+            font-weight: 900;
             line-height: 1.1;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #B0B0B0 100%);
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-        }
-
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         .hero-buttons {
@@ -266,26 +271,27 @@
         .store-buttons {
             display: flex;
             gap: 16px;
-            margin-top: 30px;
+            margin-top: 32px;
         }
 
         .store-btn {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: var(--surface);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
-            padding: 12px 20px;
-            border-radius: 12px;
+            padding: 14px 22px;
+            border-radius: 14px;
             text-decoration: none;
             color: var(--text);
             transition: all 0.3s ease;
         }
 
         .store-btn:hover {
-            background: var(--surface-elevated);
+            background: var(--surface);
             border-color: var(--primary);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
         .store-btn svg {
@@ -307,7 +313,7 @@
             font-size: 1rem;
         }
 
-        /* Phone Mockup */
+        /* Hero Visual - Game Deals Preview */
         .hero-visual {
             position: relative;
             display: flex;
@@ -316,13 +322,14 @@
         }
 
         .phone-mockup {
-            width: 300px;
-            height: 620px;
-            background: linear-gradient(180deg, #1E1E2A 0%, #16161F 100%);
-            border-radius: 40px;
+            width: 320px;
+            height: 660px;
+            background: var(--bg-secondary);
+            border-radius: 44px;
             padding: 12px;
             box-shadow: 0 50px 100px rgba(0,0,0,0.5),
-                        0 0 0 1px rgba(255,255,255,0.1);
+                        0 0 0 1px var(--border),
+                        0 0 60px rgba(255, 107, 53, 0.1);
             position: relative;
             z-index: 2;
         }
@@ -330,8 +337,8 @@
         .phone-screen {
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, #F8F9FA 0%, #E9ECEF 100%);
-            border-radius: 32px;
+            background: var(--bg);
+            border-radius: 36px;
             overflow: hidden;
             position: relative;
         }
@@ -341,149 +348,270 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px;
-            height: 30px;
-            background: #1E1E2A;
+            width: 130px;
+            height: 32px;
+            background: var(--bg-secondary);
             border-radius: 0 0 20px 20px;
+            z-index: 10;
         }
 
         .app-header {
+            background: var(--bg-secondary);
+            padding: 54px 20px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .app-header-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-logo-mini {
+            width: 36px;
+            height: 36px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            padding: 50px 20px 30px;
-            color: white;
-        }
-
-        .app-header h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .app-header p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        .app-content {
-            padding: 20px;
-        }
-
-        .scan-btn-demo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 50%;
-            margin: 0 auto 20px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 30px rgba(255,107,53,0.4);
-            animation: scan-pulse 2s ease-in-out infinite;
         }
 
-        @keyframes scan-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .product-card-demo {
-            background: white;
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .product-img {
-            width: 50px;
-            height: 50px;
-            background: #E9ECEF;
-            border-radius: 10px;
-        }
-
-        .product-info h4 {
-            font-size: 0.9rem;
-            color: #212529;
-            margin-bottom: 4px;
-        }
-
-        .product-price {
-            color: var(--accent);
+        .app-header h3 {
+            font-size: 1.3rem;
             font-weight: 700;
         }
 
-        .savings-badge {
-            background: rgba(46,204,113,0.1);
-            color: var(--accent);
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 100px;
+        .search-bar-demo {
+            margin-top: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar-demo span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .app-content {
+            padding: 16px;
+        }
+
+        .section-title-demo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .section-title-demo h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .section-title-demo a {
+            color: var(--primary);
+            font-size: 0.85rem;
+            text-decoration: none;
             font-weight: 600;
         }
 
-        /* Floating Elements */
+        .game-card-demo {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .game-card-demo:hover {
+            border-color: var(--primary);
+        }
+
+        .game-thumb {
+            width: 70px;
+            height: 50px;
+            background: linear-gradient(135deg, #1B2838 0%, #2A475E 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .game-info {
+            flex: 1;
+        }
+
+        .game-info h5 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+        }
+
+        .game-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metacritic {
+            background: #66CC33;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .game-rating {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .game-price {
+            text-align: right;
+        }
+
+        .discount-badge {
+            background: var(--accent);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 6px;
+            border-radius: 5px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+
+        .current-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .original-price {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        /* Floating Store Cards */
         .floating-card {
             position: absolute;
-            background: var(--surface);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 16px 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
             animation: float-card 6s ease-in-out infinite;
         }
 
-        .floating-card.savings {
-            top: 10%;
-            right: -30px;
+        .floating-card.stores {
+            top: 5%;
+            right: -50px;
             animation-delay: 0s;
         }
 
-        .floating-card.alert {
-            bottom: 20%;
-            left: -40px;
+        .floating-card.savings {
+            bottom: 15%;
+            left: -60px;
             animation-delay: 2s;
         }
 
         @keyframes float-card {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-12px); }
         }
 
-        .floating-card .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+        .store-icons {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            gap: 8px;
             margin-bottom: 10px;
         }
 
-        .floating-card .icon.green {
-            background: rgba(46, 204, 113, 0.2);
+        .store-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
         }
 
-        .floating-card .icon.orange {
-            background: rgba(255, 107, 53, 0.2);
-        }
+        .store-icon.steam { background: #1B2838; }
+        .store-icon.epic { background: #2A0A4E; }
+        .store-icon.gog { background: #8B00FF; }
+        .store-icon.humble { background: #CC2929; }
 
         .floating-card h4 {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
             margin-bottom: 4px;
         }
 
-        .floating-card p {
-            font-size: 1.2rem;
+        .floating-card .big-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .floating-card .big-number.green { color: var(--accent); }
+        .floating-card .big-number.orange { color: var(--primary); }
+
+        /* ===== STORES SECTION ===== */
+        .stores-section {
+            padding: 60px 40px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stores-section p {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .store-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            opacity: 0.7;
+        }
+
+        .store-logo {
+            font-size: 1.3rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .store-logo:hover {
+            color: var(--text);
+            transform: scale(1.05);
         }
 
         /* ===== FEATURES SECTION ===== */
         .features {
             padding: 120px 40px;
-            background: var(--bg-gradient);
+            background: var(--bg);
         }
 
         .section-header {
@@ -506,16 +634,16 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 28px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .feature-card {
-            background: var(--surface);
+            background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 20px;
+            padding: 36px;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -534,9 +662,9 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-6px);
             border-color: var(--primary);
-            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.12);
         }
 
         .feature-card:hover::before {
@@ -544,25 +672,25 @@
         }
 
         .feature-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 24px;
-            font-size: 2rem;
+            margin-bottom: 22px;
+            font-size: 1.8rem;
         }
 
-        .feature-icon.scan { background: rgba(255, 107, 53, 0.15); }
-        .feature-icon.compare { background: rgba(26, 58, 82, 0.3); }
-        .feature-icon.alert { background: rgba(46, 204, 113, 0.15); }
-        .feature-icon.history { background: rgba(52, 152, 219, 0.15); }
-        .feature-icon.dark { background: rgba(255, 255, 255, 0.1); }
-        .feature-icon.offline { background: rgba(155, 89, 182, 0.15); }
+        .feature-icon.compare { background: rgba(255, 107, 53, 0.15); }
+        .feature-icon.alert { background: rgba(63, 185, 80, 0.15); }
+        .feature-icon.history { background: rgba(88, 166, 255, 0.15); }
+        .feature-icon.watchlist { background: rgba(240, 80, 80, 0.15); }
+        .feature-icon.stores { background: rgba(139, 0, 255, 0.15); }
+        .feature-icon.free { background: rgba(255, 215, 0, 0.15); }
 
         .feature-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             margin-bottom: 12px;
         }
 
@@ -574,14 +702,14 @@
         /* ===== HOW IT WORKS ===== */
         .how-it-works {
             padding: 120px 40px;
-            background: var(--surface);
+            background: var(--bg-secondary);
         }
 
         .steps {
             display: flex;
             justify-content: center;
-            gap: 60px;
-            max-width: 1000px;
+            gap: 50px;
+            max-width: 1100px;
             margin: 0 auto;
             position: relative;
         }
@@ -589,12 +717,13 @@
         .steps::before {
             content: '';
             position: absolute;
-            top: 60px;
-            left: 20%;
-            right: 20%;
-            height: 2px;
+            top: 70px;
+            left: 18%;
+            right: 18%;
+            height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--accent));
             z-index: 0;
+            border-radius: 2px;
         }
 
         .step {
@@ -602,68 +731,89 @@
             position: relative;
             z-index: 1;
             flex: 1;
-            max-width: 280px;
+            max-width: 300px;
         }
 
         .step-number {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             background: var(--bg);
             border: 3px solid var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            margin: 0 auto 24px;
+            margin: 0 auto 28px;
             transition: all 0.4s ease;
         }
 
         .step:hover .step-number {
-            background: var(--primary);
-            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px var(--glow);
+        }
+
+        .step:hover .step-number svg {
+            stroke: white;
         }
 
         .step h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 12px;
         }
 
         .step p {
             color: var(--text-secondary);
+            font-size: 1rem;
         }
 
         /* ===== STATS ===== */
         .stats {
             padding: 80px 40px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 40px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
         .stat h3 {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: 3.8rem;
+            font-weight: 900;
             margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .stat p {
-            opacity: 0.9;
+            opacity: 0.95;
             font-size: 1.1rem;
+            font-weight: 500;
         }
 
         /* ===== CTA SECTION ===== */
         .cta {
             padding: 120px 40px;
             text-align: center;
-            background: var(--bg-gradient);
+            background: var(--bg);
             position: relative;
         }
 
@@ -674,24 +824,24 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 60%);
         }
 
         .cta-content {
             position: relative;
             z-index: 1;
-            max-width: 700px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
         .cta h2 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
             margin-bottom: 20px;
         }
 
         .cta p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             margin-bottom: 40px;
         }
@@ -699,7 +849,7 @@
         /* ===== FOOTER ===== */
         footer {
             padding: 60px 40px;
-            background: var(--surface);
+            background: var(--bg-secondary);
             border-top: 1px solid var(--border);
         }
 
@@ -755,13 +905,14 @@
 
         .social-links {
             display: flex;
-            gap: 16px;
+            gap: 14px;
         }
 
         .social-links a {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             background: var(--bg);
+            border: 1px solid var(--border);
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -772,6 +923,7 @@
 
         .social-links a:hover {
             background: var(--primary);
+            border-color: var(--primary);
             color: white;
         }
 
@@ -809,8 +961,8 @@
             }
 
             .phone-mockup {
-                width: 260px;
-                height: 540px;
+                width: 280px;
+                height: 580px;
             }
 
             .floating-card {
@@ -832,7 +984,7 @@
 
         @media (max-width: 768px) {
             nav {
-                padding: 15px 20px;
+                padding: 12px 20px;
             }
 
             .nav-links, .nav-cta {
@@ -848,11 +1000,11 @@
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.6rem;
             }
 
             .hero-description {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .features, .how-it-works, .cta {
@@ -860,7 +1012,7 @@
             }
 
             .section-header h2, .cta h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .features-grid {
@@ -886,7 +1038,7 @@
             }
 
             .stat h3 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
 
             .footer-content {
@@ -899,6 +1051,14 @@
                 gap: 20px;
                 text-align: center;
             }
+
+            .stores-section {
+                padding: 40px 20px;
+            }
+
+            .store-logos {
+                gap: 30px;
+            }
         }
     </style>
 </head>
@@ -908,21 +1068,21 @@
         <a href="#" class="logo">
             <div class="logo-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
-                    <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
-                    <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-                    <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
-                    <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-                    <line x1="7" y1="12" x2="17" y2="12"/>
+                    <rect x="6" y="11" width="4" height="6" rx="1"/>
+                    <rect x="14" y="11" width="4" height="6" rx="1"/>
+                    <path d="M6 7h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/>
+                    <circle cx="9" cy="5" r="1"/>
+                    <circle cx="15" cy="5" r="1"/>
                 </svg>
             </div>
-            Beatprix
+            BeatPrix
         </a>
         <ul class="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="support.html">Support</a></li>
         </ul>
-        <a href="#download" class="nav-cta">Download App</a>
+        <a href="#download" class="nav-cta">Get the App</a>
         <button class="mobile-menu-btn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="3" y1="12" x2="21" y2="12"/>
@@ -938,11 +1098,11 @@
             <div class="hero-text">
                 <div class="badge">
                     <span class="badge-dot"></span>
-                    New: AI-Powered Price Predictions
+                    Compare 30+ Stores Instantly
                 </div>
-                <h1>Scan. Compare. <span>Save.</span></h1>
+                <h1>Never Overpay<br>for <span class="gradient">Games</span> Again</h1>
                 <p class="hero-description">
-                    Stop overpaying. Beatprix instantly compares prices across retailers when you scan any product barcode. Set alerts and never miss a deal again.
+                    Find the best deals on PC games across Steam, GOG, Epic Games, Humble Bundle, and 30+ more stores. Track prices, get alerts, and save money on every purchase.
                 </p>
                 <div class="hero-buttons">
                     <a href="#download" class="btn btn-primary">
@@ -983,131 +1143,190 @@
                     <div class="phone-screen">
                         <div class="phone-notch"></div>
                         <div class="app-header">
-                            <h3>Good morning!</h3>
-                            <p>Ready to find the best deals?</p>
+                            <div class="app-header-row">
+                                <div class="app-logo-mini">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                    </svg>
+                                </div>
+                                <h3>BeatPrix</h3>
+                            </div>
+                            <div class="search-bar-demo">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                </svg>
+                                <span>Search games...</span>
+                            </div>
                         </div>
                         <div class="app-content">
-                            <div class="scan-btn-demo">
-                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                                    <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
-                                    <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-                                    <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
-                                    <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-                                </svg>
+                            <div class="section-title-demo">
+                                <h4>Hot Deals</h4>
+                                <a href="#">See All</a>
                             </div>
-                            <div class="product-card-demo">
-                                <div class="product-img"></div>
-                                <div class="product-info">
-                                    <h4>Product Name</h4>
-                                    <span class="product-price">$24.99</span>
-                                    <span class="savings-badge">Save 23%</span>
+                            <div class="game-card-demo">
+                                <div class="game-thumb">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
+                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                    </svg>
+                                </div>
+                                <div class="game-info">
+                                    <h5>Elden Ring</h5>
+                                    <div class="game-meta">
+                                        <span class="metacritic">96</span>
+                                        <span class="game-rating">Very Positive</span>
+                                    </div>
+                                </div>
+                                <div class="game-price">
+                                    <span class="discount-badge">-40%</span>
+                                    <div class="current-price">$35.99</div>
+                                    <div class="original-price">$59.99</div>
                                 </div>
                             </div>
-                            <div class="product-card-demo">
-                                <div class="product-img"></div>
-                                <div class="product-info">
-                                    <h4>Another Item</h4>
-                                    <span class="product-price">$19.99</span>
-                                    <span class="savings-badge">Best Price</span>
+                            <div class="game-card-demo">
+                                <div class="game-thumb">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
+                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                    </svg>
+                                </div>
+                                <div class="game-info">
+                                    <h5>Baldur's Gate 3</h5>
+                                    <div class="game-meta">
+                                        <span class="metacritic">96</span>
+                                        <span class="game-rating">Overwhelm+</span>
+                                    </div>
+                                </div>
+                                <div class="game-price">
+                                    <span class="discount-badge">-25%</span>
+                                    <div class="current-price">$44.99</div>
+                                    <div class="original-price">$59.99</div>
+                                </div>
+                            </div>
+                            <div class="game-card-demo">
+                                <div class="game-thumb">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
+                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                    </svg>
+                                </div>
+                                <div class="game-info">
+                                    <h5>Cyberpunk 2077</h5>
+                                    <div class="game-meta">
+                                        <span class="metacritic" style="background:#FFCC33;color:#000;">86</span>
+                                        <span class="game-rating">Very Positive</span>
+                                    </div>
+                                </div>
+                                <div class="game-price">
+                                    <span class="discount-badge">-50%</span>
+                                    <div class="current-price">$29.99</div>
+                                    <div class="original-price">$59.99</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="floating-card savings">
-                    <div class="icon green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2">
-                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-                            <polyline points="17 6 23 6 23 12"/>
-                        </svg>
+                <div class="floating-card stores">
+                    <div class="store-icons">
+                        <div class="store-icon steam">S</div>
+                        <div class="store-icon epic">E</div>
+                        <div class="store-icon gog">G</div>
+                        <div class="store-icon humble">H</div>
                     </div>
-                    <h4>Total Saved</h4>
-                    <p>$247.50</p>
+                    <h4>Stores Compared</h4>
+                    <div class="big-number orange">30+</div>
                 </div>
-                <div class="floating-card alert">
-                    <div class="icon orange">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-                        </svg>
-                    </div>
-                    <h4>Price Drop!</h4>
-                    <p style="color: var(--primary);">-15%</p>
+                <div class="floating-card savings">
+                    <h4>Average Savings</h4>
+                    <div class="big-number green">47%</div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Stores Section -->
+    <section class="stores-section">
+        <p>Comparing prices across all major game stores</p>
+        <div class="store-logos">
+            <span class="store-logo">Steam</span>
+            <span class="store-logo">GOG</span>
+            <span class="store-logo">Epic Games</span>
+            <span class="store-logo">Humble Bundle</span>
+            <span class="store-logo">Fanatical</span>
+            <span class="store-logo">Green Man Gaming</span>
+            <span class="store-logo">+24 more</span>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-header">
-            <h2>Everything You Need</h2>
-            <p>Powerful features designed to help you save money on every purchase</p>
+            <h2>Built for Gamers</h2>
+            <p>Everything you need to find the best deals and never overpay for games again</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon scan">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2">
-                        <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
-                        <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-                        <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
-                        <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-                        <line x1="7" y1="12" x2="17" y2="12"/>
-                    </svg>
-                </div>
-                <h3>Instant Barcode Scan</h3>
-                <p>Point your camera at any product barcode and get instant results. Our scanner works offline and recognizes millions of products.</p>
-            </div>
-            <div class="feature-card">
                 <div class="feature-icon compare">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1A3A52" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2">
                         <line x1="18" y1="20" x2="18" y2="10"/>
                         <line x1="12" y1="20" x2="12" y2="4"/>
                         <line x1="6" y1="20" x2="6" y2="14"/>
                     </svg>
                 </div>
-                <h3>Multi-Store Comparison</h3>
-                <p>Compare prices across dozens of retailers in real-time. See which store offers the best deal including shipping costs.</p>
+                <h3>Real-Time Price Comparison</h3>
+                <p>Compare prices across 30+ stores instantly. See the best deal including historical lows and current sales.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon alert">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
                     </svg>
                 </div>
-                <h3>Smart Price Alerts</h3>
-                <p>Set your target price and we'll notify you the moment it drops. Never miss a deal on products you're watching.</p>
+                <h3>Price Drop Alerts</h3>
+                <p>Set your target price and get notified the instant it drops. Never miss a sale on games you're waiting for.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon history">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3498DB" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                    </svg>
+                </div>
+                <h3>Price History Charts</h3>
+                <p>See how prices have changed over time. Know if you're getting a good deal or should wait for a better sale.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon watchlist">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F05050" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <h3>Watchlist</h3>
+                <p>Save games you're interested in. Track prices and see when they hit your target or go on sale.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon stores">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B00FF" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="3" y1="9" x2="21" y2="9"/>
+                        <line x1="9" y1="21" x2="9" y2="9"/>
+                    </svg>
+                </div>
+                <h3>All Major Stores</h3>
+                <p>Steam, GOG, Epic Games, Humble Bundle, Fanatical, Green Man Gaming, and 24+ more stores in one place.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon free">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
                         <circle cx="12" cy="12" r="10"/>
-                        <polyline points="12 6 12 12 16 14"/>
+                        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/>
+                        <path d="M12 18V6"/>
                     </svg>
                 </div>
-                <h3>Scan History</h3>
-                <p>Access your complete scanning history anytime. Quickly re-check prices on products you've scanned before.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon dark">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-                    </svg>
-                </div>
-                <h3>Dark Mode</h3>
-                <p>Easy on the eyes with our beautiful dark theme. Perfect for shopping at night or reducing eye strain.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon offline">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9B59B6" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                        <path d="M2 17l10 5 10-5"/>
-                        <path d="M2 12l10 5 10-5"/>
-                    </svg>
-                </div>
-                <h3>Local Storage</h3>
-                <p>Your data stays on your device. Privacy-first approach means your shopping habits remain yours alone.</p>
+                <h3>100% Free</h3>
+                <p>No subscription, no hidden fees. BeatPrix is completely free to use with all features included.</p>
             </div>
         </div>
     </section>
@@ -1116,40 +1335,38 @@
     <section class="how-it-works" id="how-it-works">
         <div class="section-header">
             <h2>How It Works</h2>
-            <p>Start saving in seconds with three simple steps</p>
+            <p>Find the best game deals in seconds</p>
         </div>
         <div class="steps">
             <div class="step">
                 <div class="step-number">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
-                        <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
-                        <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-                        <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
-                        <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-                    </svg>
-                </div>
-                <h3>Scan Barcode</h3>
-                <p>Point your camera at any product barcode in store or at home</p>
-            </div>
-            <div class="step">
-                <div class="step-number">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
                         <circle cx="11" cy="11" r="8"/>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                     </svg>
                 </div>
-                <h3>Compare Prices</h3>
-                <p>Instantly see prices from multiple retailers side by side</p>
+                <h3>Search Any Game</h3>
+                <p>Type the name of any PC game you're looking for or browse hot deals</p>
             </div>
             <div class="step">
                 <div class="step-number">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        <polyline points="9 12 11 14 15 10"/>
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                        <line x1="18" y1="20" x2="18" y2="10"/>
+                        <line x1="12" y1="20" x2="12" y2="4"/>
+                        <line x1="6" y1="20" x2="6" y2="14"/>
                     </svg>
                 </div>
-                <h3>Save Money</h3>
-                <p>Buy from the cheapest source or set an alert for price drops</p>
+                <h3>Compare Prices</h3>
+                <p>Instantly see prices from 30+ stores, sorted by best deal</p>
+            </div>
+            <div class="step">
+                <div class="step-number">
+                    <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <h3>Buy or Track</h3>
+                <p>Buy now at the best price or add to watchlist and wait for a better deal</p>
             </div>
         </div>
     </section>
@@ -1158,20 +1375,20 @@
     <section class="stats">
         <div class="stats-grid">
             <div class="stat">
-                <h3>10M+</h3>
-                <p>Products in Database</p>
+                <h3>30+</h3>
+                <p>Digital Stores</p>
             </div>
             <div class="stat">
-                <h3>50+</h3>
-                <p>Supported Retailers</p>
+                <h3>100K+</h3>
+                <p>Games Tracked</p>
             </div>
             <div class="stat">
-                <h3>$500K+</h3>
-                <p>Saved by Users</p>
+                <h3>47%</h3>
+                <p>Average Savings</p>
             </div>
             <div class="stat">
-                <h3>4.8</h3>
-                <p>App Store Rating</p>
+                <h3>Free</h3>
+                <p>Forever</p>
             </div>
         </div>
     </section>
@@ -1179,8 +1396,8 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="cta-content">
-            <h2>Ready to Start Saving?</h2>
-            <p>Join thousands of smart shoppers who never overpay. Download Beatprix free today.</p>
+            <h2>Stop Overpaying for Games</h2>
+            <p>Join thousands of gamers who never miss a deal. Download BeatPrix free today and start saving.</p>
             <div class="store-buttons" style="justify-content: center;">
                 <a href="#" class="store-btn">
                     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -1211,16 +1428,14 @@
                 <a href="#" class="logo">
                     <div class="logo-icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
-                            <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
-                            <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-                            <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
-                            <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-                            <line x1="7" y1="12" x2="17" y2="12"/>
+                            <rect x="6" y="11" width="4" height="6" rx="1"/>
+                            <rect x="14" y="11" width="4" height="6" rx="1"/>
+                            <path d="M6 7h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"/>
                         </svg>
                     </div>
-                    Beatprix
+                    BeatPrix
                 </a>
-                <p>The smartest way to compare prices and save money on everyday purchases. Scan, compare, and never overpay again.</p>
+                <p>The smartest way to find the best deals on PC games. Compare prices across 30+ stores and never overpay again.</p>
             </div>
             <div class="footer-links">
                 <h4>Product</h4>
@@ -1247,21 +1462,19 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Beatprix. All rights reserved.</p>
+            <p>&copy; 2025 BeatPrix. All rights reserved.</p>
             <div class="social-links">
                 <a href="https://twitter.com/beatprixapp" target="_blank" aria-label="Twitter">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                     </svg>
                 </a>
-                <a href="#" aria-label="Instagram">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                <a href="#" aria-label="Discord">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
                     </svg>
                 </a>
-                <a href="mailto:hello@beatprix.com" aria-label="Email">
+                <a href="mailto:hello@beatprix.app" aria-label="Email">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                         <polyline points="22,6 12,13 2,6"/>

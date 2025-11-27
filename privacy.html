@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Beatprix</title>
+    <title>Privacy Policy - BeatPrix</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,11 +11,12 @@
         :root {
             --primary: #FF6B35;
             --secondary: #1A3A52;
-            --accent: #2ECC71;
-            --bg: #F8F9FA;
-            --surface: #FFFFFF;
-            --text: #212529;
-            --text-secondary: #6C757D;
+            --accent: #3FB950;
+            --bg: #0D1117;
+            --surface: #161B22;
+            --text: #F0F6FC;
+            --text-secondary: #8B949E;
+            --border: rgba(240, 246, 252, 0.1);
         }
 
         * {
@@ -59,11 +60,11 @@
             background: var(--surface);
             border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
         }
 
         h2 {
-            color: var(--secondary);
+            color: var(--text);
             font-size: 1.5rem;
             margin: 30px 0 15px 0;
             padding-bottom: 10px;
@@ -89,8 +90,12 @@
             color: var(--text-secondary);
         }
 
+        li strong {
+            color: var(--text);
+        }
+
         .highlight {
-            background: linear-gradient(120deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.05) 100%);
+            background: rgba(255, 107, 53, 0.1);
             padding: 20px;
             border-radius: 12px;
             border-left: 4px solid var(--primary);
@@ -109,7 +114,7 @@
             font-size: 0.9rem;
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #E9ECEF;
+            border-top: 1px solid var(--border);
         }
 
         .back-link {
@@ -154,46 +159,52 @@
 
         <div class="card">
             <div class="highlight">
-                <p>Beatprix is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your information.</p>
+                <p>BeatPrix is committed to protecting your privacy. This policy explains how we collect, use, and safeguard your information when you use our game price comparison service.</p>
             </div>
 
             <h2>Information We Collect</h2>
-            <p>Beatprix collects minimal data necessary to provide our price comparison service:</p>
+            <p>BeatPrix collects minimal data necessary to provide our game price comparison service:</p>
             <ul>
-                <li><strong>Barcode Scans:</strong> Product barcodes you scan are processed to find product information and prices. This data is stored locally on your device.</li>
-                <li><strong>Price Alerts:</strong> When you set price alerts, we store the product barcode and your target price locally on your device.</li>
-                <li><strong>Scan History:</strong> Your scanning history is stored locally on your device for your convenience.</li>
+                <li><strong>Game Searches:</strong> When you search for games, we query public price APIs on your behalf. Search queries are not permanently stored.</li>
+                <li><strong>Watchlist:</strong> Games you add to your watchlist are stored locally on your device along with your target prices.</li>
+                <li><strong>Price Alerts:</strong> When you set price alerts, we store the game information and target price locally on your device.</li>
+                <li><strong>Search History:</strong> Your recent searches are stored locally on your device for convenience.</li>
                 <li><strong>Crash Reports:</strong> Anonymous crash data helps us improve app stability (via Firebase Crashlytics).</li>
                 <li><strong>Analytics:</strong> Anonymous usage statistics help us understand how to improve the app (via Firebase Analytics).</li>
             </ul>
 
             <h2>How We Use Your Information</h2>
             <ul>
-                <li>To provide price comparison results for scanned products</li>
-                <li>To send price alert notifications when prices drop</li>
-                <li>To maintain your scan history for easy access</li>
+                <li>To provide game price comparison results from 30+ stores</li>
+                <li>To send price drop notifications for games on your watchlist</li>
+                <li>To maintain your search history and watchlist for easy access</li>
                 <li>To improve app performance and fix bugs</li>
                 <li>To understand usage patterns and improve features</li>
             </ul>
 
             <h2>Data Storage</h2>
-            <p>Your personal data (scan history, price alerts, preferences) is stored <strong>locally on your device</strong> using secure storage. We do not store your personal data on our servers.</p>
+            <p>Your personal data (watchlist, price alerts, preferences) is stored <strong>locally on your device</strong> using secure storage. We do not store your personal data on our servers.</p>
             <p>Anonymous analytics and crash data is processed by Firebase (Google) in accordance with their privacy policy.</p>
 
             <h2>Third-Party Services</h2>
             <p>We use the following third-party services:</p>
             <ul>
+                <li><strong>CheapShark API:</strong> Game price comparison data from 30+ digital stores</li>
                 <li><strong>Firebase Analytics:</strong> Anonymous usage analytics</li>
                 <li><strong>Firebase Crashlytics:</strong> Crash reporting for app stability</li>
-                <li><strong>Open Food Facts:</strong> Product database for barcode lookups</li>
-                <li><strong>Various Retailers:</strong> Price data from public retail websites</li>
+                <li><strong>Digital Game Stores:</strong> Price and game data from Steam, GOG, Epic Games, Humble Bundle, and other stores</li>
             </ul>
 
-            <h2>Camera Permission</h2>
-            <p>Beatprix requires camera access solely for scanning product barcodes. We do not store, transmit, or process any images from your camera beyond the barcode scanning function.</p>
+            <h2>Network Usage</h2>
+            <p>BeatPrix requires internet access to fetch current game prices from various stores. We make requests to:</p>
+            <ul>
+                <li>CheapShark API for price comparisons</li>
+                <li>Steam CDN for game thumbnails</li>
+                <li>Firebase for analytics and crash reporting</li>
+            </ul>
 
             <h2>Notifications</h2>
-            <p>If you enable notifications, we will send you alerts when tracked product prices drop below your target. You can disable notifications at any time in your device settings.</p>
+            <p>If you enable notifications, we will send you alerts when games on your watchlist drop below your target price. You can disable notifications at any time in your device settings.</p>
 
             <h2>Data Sharing</h2>
             <p>We do <strong>not</strong> sell, trade, or share your personal information with third parties. Anonymous analytics data may be processed by Firebase as described above.</p>
@@ -211,16 +222,16 @@
             </ul>
 
             <h2>Children's Privacy</h2>
-            <p>Beatprix is not intended for children under 13. We do not knowingly collect personal information from children.</p>
+            <p>BeatPrix is not intended for children under 13. We do not knowingly collect personal information from children.</p>
 
             <h2>Changes to This Policy</h2>
             <p>We may update this privacy policy from time to time. We will notify you of significant changes through the app or by updating the "Last Updated" date below.</p>
 
             <h2>Contact Us</h2>
             <p>If you have questions about this privacy policy or your data, please contact us at:</p>
-            <p><strong>Email:</strong> privacy@beatprix.com</p>
+            <p><strong>Email:</strong> privacy@beatprix.app</p>
 
-            <p class="last-updated">Last Updated: November 26, 2025</p>
+            <p class="last-updated">Last Updated: November 27, 2025</p>
         </div>
     </div>
 </body>

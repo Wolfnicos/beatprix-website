@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support - Beatprix</title>
+    <title>Support - BeatPrix</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,11 +11,12 @@
         :root {
             --primary: #FF6B35;
             --secondary: #1A3A52;
-            --accent: #2ECC71;
-            --bg: #F8F9FA;
-            --surface: #FFFFFF;
-            --text: #212529;
-            --text-secondary: #6C757D;
+            --accent: #3FB950;
+            --bg: #0D1117;
+            --surface: #161B22;
+            --text: #F0F6FC;
+            --text-secondary: #8B949E;
+            --border: rgba(240, 246, 252, 0.1);
         }
 
         * {
@@ -82,13 +83,13 @@
             border-radius: 16px;
             padding: 30px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .contact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-color: var(--primary);
         }
 
         .contact-icon {
@@ -116,7 +117,7 @@
         .contact-card h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
-            color: var(--secondary);
+            color: var(--text);
         }
 
         .contact-card p {
@@ -138,18 +139,18 @@
             background: var(--surface);
             border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
         }
 
         .faq-section h2 {
-            color: var(--secondary);
+            color: var(--text);
             font-size: 1.8rem;
             margin-bottom: 30px;
             text-align: center;
         }
 
         .faq-item {
-            border-bottom: 1px solid #E9ECEF;
+            border-bottom: 1px solid var(--border);
             padding: 20px 0;
         }
 
@@ -192,7 +193,7 @@
             padding: 20px;
             background: var(--surface);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
         }
 
         .app-version p {
@@ -271,54 +272,59 @@
             <h2>Frequently Asked Questions</h2>
 
             <div class="faq-item">
-                <div class="faq-question">How do I scan a barcode?</div>
-                <p class="faq-answer">Open Beatprix and tap the scan button on the home screen. Point your camera at the product barcode and hold steady. The app will automatically detect and scan the barcode.</p>
+                <div class="faq-question">How do I search for a game?</div>
+                <p class="faq-answer">Open BeatPrix and use the search bar on the home screen to find any game. You can also scan the barcode on a physical game case to look up digital prices for that title.</p>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Why can't I find my product?</div>
-                <p class="faq-answer">Not all products are in our database. We use Open Food Facts and other sources. If a product isn't found, try scanning again or check if the barcode is clear. Some regional or new products may not be available yet.</p>
+                <div class="faq-question">Which stores does BeatPrix compare?</div>
+                <p class="faq-answer">BeatPrix compares prices from 30+ digital stores including Steam, GOG, Epic Games Store, Humble Bundle, Fanatical, Green Man Gaming, and many more. We use the CheapShark API to aggregate deals from all major PC game retailers.</p>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">How accurate are the prices?</div>
-                <p class="faq-answer">Prices are gathered from publicly available sources and updated periodically. However, prices can change at any time. Always verify the actual price at the retailer before making a purchase.</p>
+                <p class="faq-answer">Prices are fetched from the CheapShark API and updated regularly. However, prices and deals can change at any time. Always verify the actual price on the store's website before making a purchase.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">How do I add a game to my watchlist?</div>
+                <p class="faq-answer">When viewing a game's details, tap the "Add to Watchlist" button. You can also set a target price - we'll notify you when the game drops to or below your target.</p>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">How do price alerts work?</div>
-                <p class="faq-answer">After scanning a product, tap "Set Price Alert" and enter your target price. When the price drops to or below your target, you'll receive a notification. Make sure notifications are enabled in your device settings.</p>
+                <p class="faq-answer">When you add a game to your watchlist, you can set a target price. BeatPrix periodically checks prices and sends you a notification when the game reaches your target. Make sure notifications are enabled in your device settings.</p>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">Why am I not receiving notifications?</div>
-                <p class="faq-answer">Check that notifications are enabled for Beatprix in your device settings. On iOS, go to Settings > Beatprix > Notifications. On Android, go to Settings > Apps > Beatprix > Notifications.</p>
+                <p class="faq-answer">Check that notifications are enabled for BeatPrix in your device settings. On iOS, go to Settings > BeatPrix > Notifications. On Android, go to Settings > Apps > BeatPrix > Notifications. Also ensure background app refresh is enabled.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Does BeatPrix support console games?</div>
+                <p class="faq-answer">Currently, BeatPrix focuses on PC game deals from digital stores. Console game support may be added in future updates.</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Is BeatPrix free?</div>
+                <p class="faq-answer">Yes! BeatPrix is completely free to download and use. Compare prices, build your watchlist, and get price alerts - all at no cost.</p>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">How do I delete my data?</div>
-                <p class="faq-answer">Your data is stored locally on your device. To delete all data, you can either clear the app's data in your device settings or uninstall the app. No personal data is stored on our servers.</p>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Is Beatprix free?</div>
-                <p class="faq-answer">Yes! Beatprix is completely free to download and use. We may introduce optional premium features in the future, but core functionality will always remain free.</p>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Which retailers are supported?</div>
-                <p class="faq-answer">We compare prices from major online retailers. The specific retailers may vary by region and product category. We're constantly adding new sources to provide more comprehensive price comparisons.</p>
+                <p class="faq-answer">Your data (watchlist, price alerts) is stored locally on your device. To delete all data, clear the app's data in your device settings or uninstall the app. No personal data is stored on our servers.</p>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">Can I suggest a feature?</div>
-                <p class="faq-answer">Absolutely! We love hearing from our users. Send your feature suggestions to feedback@beatprix.app and we'll consider them for future updates.</p>
+                <p class="faq-answer">Absolutely! We love hearing from gamers. Send your feature suggestions to feedback@beatprix.app and we'll consider them for future updates.</p>
             </div>
         </div>
 
         <div class="app-version">
-            <p><strong>Beatprix</strong> Version 1.0.0</p>
-            <p>Made with love for smart shoppers</p>
+            <p><strong>BeatPrix</strong> Version 1.0.0</p>
+            <p>Made with love for gamers</p>
         </div>
     </div>
 </body>

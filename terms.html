@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Use - Beatprix</title>
+    <title>Terms of Use - BeatPrix</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,11 +11,12 @@
         :root {
             --primary: #FF6B35;
             --secondary: #1A3A52;
-            --accent: #2ECC71;
-            --bg: #F8F9FA;
-            --surface: #FFFFFF;
-            --text: #212529;
-            --text-secondary: #6C757D;
+            --accent: #3FB950;
+            --bg: #0D1117;
+            --surface: #161B22;
+            --text: #F0F6FC;
+            --text-secondary: #8B949E;
+            --border: rgba(240, 246, 252, 0.1);
         }
 
         * {
@@ -59,15 +60,15 @@
             background: var(--surface);
             border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
         }
 
         h2 {
-            color: var(--secondary);
+            color: var(--text);
             font-size: 1.5rem;
             margin: 30px 0 15px 0;
             padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary);
+            border-bottom: 2px solid var(--primary);
         }
 
         h2:first-of-type {
@@ -90,7 +91,7 @@
         }
 
         .highlight {
-            background: linear-gradient(120deg, rgba(26,58,82,0.1) 0%, rgba(26,58,82,0.05) 100%);
+            background: rgba(26, 58, 82, 0.3);
             padding: 20px;
             border-radius: 12px;
             border-left: 4px solid var(--secondary);
@@ -104,7 +105,7 @@
         }
 
         .warning {
-            background: linear-gradient(120deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.05) 100%);
+            background: rgba(255, 107, 53, 0.1);
             padding: 20px;
             border-radius: 12px;
             border-left: 4px solid var(--primary);
@@ -122,7 +123,7 @@
             font-size: 0.9rem;
             margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid #E9ECEF;
+            border-top: 1px solid var(--border);
         }
 
         .back-link {
@@ -167,70 +168,76 @@
 
         <div class="card">
             <div class="highlight">
-                <p>By downloading, installing, or using Beatprix, you agree to be bound by these Terms of Use. If you do not agree, please do not use the app.</p>
+                <p>By downloading, installing, or using BeatPrix, you agree to be bound by these Terms of Use. If you do not agree, please do not use the app.</p>
             </div>
 
             <h2>1. Acceptance of Terms</h2>
-            <p>These Terms of Use ("Terms") govern your use of the Beatprix mobile application ("App", "Service"). By accessing or using the App, you agree to be bound by these Terms and our Privacy Policy.</p>
+            <p>These Terms of Use ("Terms") govern your use of the BeatPrix mobile application ("App", "Service"). By accessing or using the App, you agree to be bound by these Terms and our Privacy Policy.</p>
 
             <h2>2. Description of Service</h2>
-            <p>Beatprix is a price comparison application that allows you to:</p>
+            <p>BeatPrix is a video game price comparison application that allows you to:</p>
             <ul>
-                <li>Scan product barcodes to identify products</li>
-                <li>Compare prices across multiple retailers</li>
-                <li>Set price alerts for products you're interested in</li>
-                <li>Track your scan history</li>
+                <li>Search for video games across 30+ digital stores</li>
+                <li>Compare prices from Steam, GOG, Epic Games, Humble Bundle, and more</li>
+                <li>Add games to your watchlist and set target prices</li>
+                <li>Receive price drop notifications when games reach your target</li>
+                <li>View price history and deal ratings</li>
             </ul>
 
             <h2>3. Price Information Disclaimer</h2>
             <div class="warning">
-                <p><strong>Important:</strong> Price information displayed in Beatprix is gathered from publicly available sources and may not always be accurate, complete, or up-to-date. Prices may change without notice. Always verify the actual price at the retailer before making a purchase.</p>
+                <p><strong>Important:</strong> Game prices displayed in BeatPrix are gathered from the CheapShark API and other publicly available sources. Prices may not always be accurate, complete, or up-to-date. Prices and deals can change at any time. Always verify the actual price at the digital store before making a purchase.</p>
             </div>
-            <p>Beatprix does not guarantee:</p>
+            <p>BeatPrix does not guarantee:</p>
             <ul>
-                <li>The accuracy of displayed prices</li>
-                <li>Product availability at any retailer</li>
-                <li>That all retailers or products will be included</li>
-                <li>Real-time price updates</li>
+                <li>The accuracy of displayed game prices or discounts</li>
+                <li>Game availability at any digital store</li>
+                <li>That all stores, games, or DLC will be included</li>
+                <li>Real-time price updates or instant deal notifications</li>
+                <li>Regional pricing accuracy (prices may vary by region)</li>
             </ul>
 
             <h2>4. User Responsibilities</h2>
-            <p>When using Beatprix, you agree to:</p>
+            <p>When using BeatPrix, you agree to:</p>
             <ul>
-                <li>Use the App only for lawful purposes</li>
+                <li>Use the App only for lawful, personal, non-commercial purposes</li>
                 <li>Not attempt to reverse engineer, modify, or hack the App</li>
-                <li>Not use the App to collect data for commercial purposes</li>
-                <li>Not interfere with the proper functioning of the App</li>
-                <li>Verify prices directly with retailers before purchasing</li>
+                <li>Not use the App to collect data for commercial purposes or resale</li>
+                <li>Not interfere with the proper functioning of the App or its APIs</li>
+                <li>Verify prices directly with digital stores before purchasing</li>
+                <li>Not abuse the price alert system or make excessive API requests</li>
             </ul>
 
             <h2>5. Intellectual Property</h2>
-            <p>The Beatprix app, including its design, features, content, and trademarks, is owned by Beatprix and protected by intellectual property laws. You may not:</p>
+            <p>The BeatPrix app, including its design, features, content, and trademarks, is owned by BeatPrix and protected by intellectual property laws. Game titles, artwork, and trademarks belong to their respective owners. You may not:</p>
             <ul>
                 <li>Copy, modify, or distribute any part of the App</li>
                 <li>Use our trademarks without permission</li>
                 <li>Create derivative works based on the App</li>
+                <li>Scrape or redistribute game price data from the App</li>
             </ul>
 
             <h2>6. Third-Party Services</h2>
-            <p>Beatprix may display information from or link to third-party websites and services (retailers, product databases). We are not responsible for:</p>
+            <p>BeatPrix displays information from third-party services and digital game stores. We are not responsible for:</p>
             <ul>
-                <li>The content, accuracy, or availability of third-party services</li>
-                <li>Any transactions you make with third-party retailers</li>
-                <li>Third-party privacy practices or terms</li>
+                <li>The content, accuracy, or availability of third-party services (Steam, GOG, Epic Games, etc.)</li>
+                <li>Any transactions or purchases you make with digital stores</li>
+                <li>Third-party privacy practices, terms, or refund policies</li>
+                <li>Game content, DRM requirements, or regional restrictions</li>
             </ul>
 
             <h2>7. Limitation of Liability</h2>
             <p>To the maximum extent permitted by law:</p>
             <ul>
-                <li>Beatprix is provided "AS IS" without warranties of any kind</li>
+                <li>BeatPrix is provided "AS IS" without warranties of any kind</li>
                 <li>We are not liable for any damages arising from your use of the App</li>
                 <li>We are not responsible for any purchasing decisions you make based on App information</li>
+                <li>We are not responsible for missed deals or price alerts</li>
                 <li>Our total liability shall not exceed the amount you paid for the App (if any)</li>
             </ul>
 
             <h2>8. Indemnification</h2>
-            <p>You agree to indemnify and hold harmless Beatprix and its affiliates from any claims, damages, or expenses arising from your use of the App or violation of these Terms.</p>
+            <p>You agree to indemnify and hold harmless BeatPrix and its affiliates from any claims, damages, or expenses arising from your use of the App or violation of these Terms.</p>
 
             <h2>9. App Updates</h2>
             <p>We may update the App from time to time to add features, fix bugs, or improve performance. Some updates may be required to continue using the App. We are not obligated to provide any specific updates or maintain backwards compatibility.</p>
@@ -249,9 +256,9 @@
 
             <h2>14. Contact</h2>
             <p>For questions about these Terms, please contact us at:</p>
-            <p><strong>Email:</strong> legal@beatprix.com</p>
+            <p><strong>Email:</strong> legal@beatprix.app</p>
 
-            <p class="last-updated">Last Updated: November 26, 2025</p>
+            <p class="last-updated">Last Updated: November 27, 2025</p>
         </div>
     </div>
 </body>
