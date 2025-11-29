@@ -25,26 +25,32 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --primary: #FF6B35;
-            --primary-light: #FF8555;
-            --secondary: #1A3A52;
-            --accent: #3FB950;
-            --accent-glow: rgba(63, 185, 80, 0.4);
-            --bg: #0D1117;
-            --bg-secondary: #161B22;
-            --surface: #21262D;
-            --surface-elevated: #30363D;
-            --text: #F0F6FC;
-            --text-secondary: #8B949E;
-            --border: rgba(240, 246, 252, 0.1);
-            --glow: rgba(255, 107, 53, 0.4);
-            --steam-blue: #1B2838;
-            --epic-purple: #2A0A4E;
-            --gog-purple: #8B00FF;
+            --primary-light: #FF8F65;
+            --primary-dark: #E85A25;
+            --secondary: #7C3AED;
+            --accent: #10B981;
+            --accent-cyan: #06B6D4;
+            --bg: #09090B;
+            --bg-secondary: #18181B;
+            --surface: #27272A;
+            --surface-elevated: #3F3F46;
+            --text: #FAFAFA;
+            --text-secondary: #A1A1AA;
+            --text-muted: #71717A;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-light: rgba(255, 255, 255, 0.12);
+            --glow-primary: rgba(255, 107, 53, 0.5);
+            --glow-secondary: rgba(124, 58, 237, 0.4);
+            --glow-accent: rgba(16, 185, 129, 0.4);
+            --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #FF8F65 50%, #FFA07A 100%);
+            --gradient-hero: linear-gradient(135deg, rgba(255,107,53,0.15) 0%, rgba(124,58,237,0.1) 50%, rgba(6,182,212,0.08) 100%);
+            --glass: rgba(24, 24, 27, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -65,6 +71,39 @@
             overflow-x: hidden;
         }
 
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-gradient::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(255,107,53,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 30%, rgba(124,58,237,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 50% 80%, rgba(6,182,212,0.08) 0%, transparent 50%);
+            animation: gradientMove 25s ease-in-out infinite;
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            25% { transform: translate(-5%, -5%) rotate(2deg) scale(1.02); }
+            50% { transform: translate(5%, 2%) rotate(-1deg) scale(0.98); }
+            75% { transform: translate(-2%, 5%) rotate(1deg) scale(1.01); }
+        }
+
         /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
@@ -72,39 +111,53 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 16px 40px;
+            padding: 16px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(13, 17, 23, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            padding: 12px 32px;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: 700;
             color: var(--text);
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 12px;
+            background: var(--gradient-primary);
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 15px var(--glow);
+            box-shadow: 0 8px 32px var(--glow-primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            transform: scale(1.05) rotate(-3deg);
+            box-shadow: 0 12px 40px var(--glow-primary);
         }
 
         .nav-links {
             display: flex;
-            gap: 36px;
+            gap: 40px;
             list-style: none;
         }
 
@@ -112,27 +165,63 @@
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: 1px;
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--gradient-primary);
             color: white;
             padding: 12px 28px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px var(--glow);
+            font-size: 0.95rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px var(--glow-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
         }
 
         .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--glow);
+            box-shadow: 0 8px 30px var(--glow-primary);
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
         }
 
         /* ===== HERO SECTION ===== */
@@ -141,56 +230,36 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 120px 40px 80px;
+            padding: 140px 40px 100px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 20%, rgba(255, 107, 53, 0.12) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 80%, rgba(63, 185, 80, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 50%, rgba(139, 0, 255, 0.05) 0%, transparent 40%);
-            animation: float 25s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-20px, -20px) rotate(1deg); }
-            66% { transform: translate(20px, -10px) rotate(-1deg); }
         }
 
         .hero-content {
-            max-width: 1300px;
+            max-width: 1400px;
+            width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 0.9fr;
             gap: 80px;
             align-items: center;
-            position: relative;
-            z-index: 1;
         }
 
         .hero-text {
-            max-width: 620px;
+            max-width: 680px;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(63, 185, 80, 0.1);
-            border: 1px solid rgba(63, 185, 80, 0.3);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
             color: var(--accent);
-            padding: 10px 18px;
+            padding: 10px 20px;
             border-radius: 100px;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             font-weight: 600;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
         }
 
         .badge-dot {
@@ -199,39 +268,61 @@
             background: var(--accent);
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 10px var(--glow-accent);
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(63, 185, 80, 0.4); }
-            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(63, 185, 80, 0); }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
         }
 
         .hero h1 {
-            font-size: 4.2rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -0.02em;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 28px;
+            letter-spacing: -0.03em;
         }
 
         .hero h1 .gradient {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--accent) 100%);
+            background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
+        .hero h1 .underline-effect {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1 .underline-effect::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0.3;
+            border-radius: 4px;
+            z-index: -1;
+        }
+
         .hero-description {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            line-height: 1.7;
+            line-height: 1.75;
+            max-width: 540px;
         }
 
         .hero-buttons {
             display: flex;
             gap: 16px;
             flex-wrap: wrap;
+            margin-bottom: 48px;
         }
 
         .btn {
@@ -243,60 +334,64 @@
             font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--gradient-primary);
             color: white;
-            box-shadow: 0 4px 30px var(--glow);
+            box-shadow: 0 8px 32px var(--glow-primary);
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 40px var(--glow);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 40px var(--glow-primary);
         }
 
         .btn-secondary {
             background: var(--surface);
             color: var(--text);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-light);
         }
 
         .btn-secondary:hover {
             background: var(--surface-elevated);
             border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
+        /* Store Download Buttons */
         .store-buttons {
             display: flex;
             gap: 16px;
-            margin-top: 32px;
         }
 
         .store-btn {
             display: flex;
             align-items: center;
-            gap: 12px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            padding: 14px 22px;
-            border-radius: 14px;
+            gap: 14px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 16px 24px;
+            border-radius: 16px;
             text-decoration: none;
             color: var(--text);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
         }
 
         .store-btn:hover {
             background: var(--surface);
             border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .store-btn svg {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
         }
 
         .store-info {
@@ -306,14 +401,16 @@
         .store-info span {
             display: block;
             font-size: 0.75rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
+            margin-bottom: 2px;
         }
 
         .store-info strong {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
-        /* Hero Visual - Game Deals Preview */
+        /* Hero Visual */
         .hero-visual {
             position: relative;
             display: flex;
@@ -321,24 +418,35 @@
             align-items: center;
         }
 
-        .phone-mockup {
-            width: 320px;
-            height: 660px;
-            background: var(--bg-secondary);
-            border-radius: 44px;
-            padding: 12px;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.5),
-                        0 0 0 1px var(--border),
-                        0 0 60px rgba(255, 107, 53, 0.1);
+        .phone-wrapper {
             position: relative;
-            z-index: 2;
+            perspective: 1000px;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 620px;
+            background: linear-gradient(145deg, #1c1c1e 0%, #0d0d0f 100%);
+            border-radius: 48px;
+            padding: 12px;
+            box-shadow:
+                0 60px 120px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(255,255,255,0.1),
+                0 0 80px rgba(255, 107, 53, 0.15),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            transform: rotateY(-8deg) rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+
+        .phone-wrapper:hover .phone-mockup {
+            transform: rotateY(-3deg) rotateX(2deg);
         }
 
         .phone-screen {
             width: 100%;
             height: 100%;
             background: var(--bg);
-            border-radius: 36px;
+            border-radius: 40px;
             overflow: hidden;
             position: relative;
         }
@@ -348,81 +456,97 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 130px;
-            height: 32px;
-            background: var(--bg-secondary);
+            width: 120px;
+            height: 34px;
+            background: #000;
             border-radius: 0 0 20px 20px;
             z-index: 10;
         }
 
+        .phone-notch::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: #1c1c1e;
+            border-radius: 3px;
+        }
+
         .app-header {
-            background: var(--bg-secondary);
-            padding: 54px 20px 20px;
-            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg) 100%);
+            padding: 56px 18px 18px;
         }
 
         .app-header-row {
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-bottom: 14px;
         }
 
         .app-logo-mini {
             width: 36px;
             height: 36px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--gradient-primary);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 12px var(--glow-primary);
         }
 
         .app-header h3 {
-            font-size: 1.3rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
             font-weight: 700;
         }
 
         .search-bar-demo {
-            margin-top: 16px;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 12px 16px;
+            padding: 12px 14px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
         .search-bar-demo span {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         .app-content {
-            padding: 16px;
+            padding: 14px;
         }
 
         .section-title-demo {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .section-title-demo h4 {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .section-title-demo a {
             color: var(--primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-decoration: none;
             font-weight: 600;
         }
 
         .game-card-demo {
-            background: var(--bg-secondary);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--surface) 100%);
             border: 1px solid var(--border);
             border-radius: 14px;
             padding: 12px;
@@ -434,21 +558,24 @@
         }
 
         .game-card-demo:hover {
-            border-color: var(--primary);
+            border-color: rgba(255,107,53,0.4);
+            transform: translateX(4px);
         }
 
         .game-thumb {
-            width: 70px;
-            height: 50px;
+            width: 64px;
+            height: 48px;
             background: linear-gradient(135deg, #1B2838 0%, #2A475E 100%);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .game-info {
             flex: 1;
+            min-width: 0;
         }
 
         .game-info h5 {
@@ -458,27 +585,26 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 100px;
         }
 
         .game-meta {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .metacritic {
             background: #66CC33;
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             padding: 2px 5px;
             border-radius: 4px;
         }
 
         .game-rating {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+            font-size: 0.7rem;
+            color: var(--text-muted);
         }
 
         .game-price {
@@ -486,9 +612,9 @@
         }
 
         .discount-badge {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
             color: white;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             padding: 3px 6px;
             border-radius: 5px;
@@ -497,80 +623,96 @@
         }
 
         .current-price {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 700;
             color: var(--accent);
         }
 
         .original-price {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
+            font-size: 0.7rem;
+            color: var(--text-muted);
             text-decoration: line-through;
         }
 
-        /* Floating Store Cards */
+        /* Floating Cards */
         .floating-card {
             position: absolute;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 16px 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            animation: float-card 6s ease-in-out infinite;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px 24px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.4);
         }
 
         .floating-card.stores {
-            top: 5%;
-            right: -50px;
-            animation-delay: 0s;
+            top: 8%;
+            right: -70px;
+            animation: floatA 6s ease-in-out infinite;
         }
 
         .floating-card.savings {
-            bottom: 15%;
-            left: -60px;
+            bottom: 12%;
+            left: -80px;
+            animation: floatB 6s ease-in-out infinite;
             animation-delay: 2s;
         }
 
-        @keyframes float-card {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
+        @keyframes floatA {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        @keyframes floatB {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(-2deg); }
         }
 
         .store-icons {
             display: flex;
             gap: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .store-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 700;
+            color: white;
         }
 
-        .store-icon.steam { background: #1B2838; }
-        .store-icon.epic { background: #2A0A4E; }
-        .store-icon.gog { background: #8B00FF; }
-        .store-icon.humble { background: #CC2929; }
+        .store-icon.steam { background: linear-gradient(135deg, #1B2838, #2A475E); }
+        .store-icon.epic { background: linear-gradient(135deg, #2A0A4E, #6B21A8); }
+        .store-icon.gog { background: linear-gradient(135deg, #8B00FF, #A855F7); }
+        .store-icon.humble { background: linear-gradient(135deg, #CC2929, #EF4444); }
 
         .floating-card h4 {
             font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 4px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 500;
         }
 
         .floating-card .big-number {
-            font-size: 1.8rem;
-            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
         }
 
-        .floating-card .big-number.green { color: var(--accent); }
-        .floating-card .big-number.orange { color: var(--primary); }
+        .floating-card .big-number.green {
+            color: var(--accent);
+            text-shadow: 0 0 20px var(--glow-accent);
+        }
+        .floating-card .big-number.orange {
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--glow-primary);
+        }
 
         /* ===== STORES SECTION ===== */
         .stores-section {
@@ -578,40 +720,55 @@
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stores-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(124,58,237,0.05) 0%, transparent 70%);
         }
 
         .stores-section p {
             text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            font-size: 0.95rem;
+            position: relative;
         }
 
         .store-logos {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 50px;
+            gap: 48px;
             flex-wrap: wrap;
-            opacity: 0.7;
+            position: relative;
         }
 
         .store-logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-secondary);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
             transition: all 0.3s ease;
+            opacity: 0.6;
         }
 
         .store-logo:hover {
             color: var(--text);
-            transform: scale(1.05);
+            opacity: 1;
+            transform: scale(1.1);
         }
 
         /* ===== FEATURES SECTION ===== */
         .features {
-            padding: 120px 40px;
-            background: var(--bg);
+            padding: 140px 40px;
+            position: relative;
         }
 
         .section-header {
@@ -620,189 +777,245 @@
             margin: 0 auto 80px;
         }
 
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
         .section-header h2 {
-            font-size: 3rem;
-            font-weight: 800;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 20px;
+            letter-spacing: -0.02em;
         }
 
         .section-header p {
             color: var(--text-secondary);
             font-size: 1.2rem;
+            line-height: 1.7;
         }
 
-        .features-grid {
+        /* Bento Grid */
+        .bento-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+            grid-template-rows: auto auto;
+            gap: 24px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .feature-card {
-            background: var(--bg-secondary);
+        .bento-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--surface) 100%);
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 36px;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .bento-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            height: 2px;
+            background: var(--gradient-primary);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
 
-        .feature-card:hover {
-            transform: translateY(-6px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.12);
+        .bento-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255,107,53,0.3);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 40px rgba(255,107,53,0.1);
         }
 
-        .feature-card:hover::before {
+        .bento-card:hover::before {
             opacity: 1;
+        }
+
+        .bento-card.large {
+            grid-column: span 2;
         }
 
         .feature-icon {
             width: 64px;
             height: 64px;
-            border-radius: 16px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 22px;
-            font-size: 1.8rem;
+            margin-bottom: 24px;
+            position: relative;
         }
 
-        .feature-icon.compare { background: rgba(255, 107, 53, 0.15); }
-        .feature-icon.alert { background: rgba(63, 185, 80, 0.15); }
-        .feature-icon.history { background: rgba(88, 166, 255, 0.15); }
-        .feature-icon.watchlist { background: rgba(240, 80, 80, 0.15); }
-        .feature-icon.stores { background: rgba(139, 0, 255, 0.15); }
-        .feature-icon.free { background: rgba(255, 215, 0, 0.15); }
+        .feature-icon::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 22px;
+            background: inherit;
+            opacity: 0.3;
+            filter: blur(10px);
+        }
 
-        .feature-card h3 {
-            font-size: 1.3rem;
+        .feature-icon.compare { background: linear-gradient(135deg, var(--primary), var(--primary-light)); }
+        .feature-icon.alert { background: linear-gradient(135deg, var(--accent), #059669); }
+        .feature-icon.history { background: linear-gradient(135deg, var(--accent-cyan), #0891B2); }
+        .feature-icon.watchlist { background: linear-gradient(135deg, #EF4444, #F97316); }
+        .feature-icon.stores { background: linear-gradient(135deg, var(--secondary), #9333EA); }
+        .feature-icon.free { background: linear-gradient(135deg, #FBBF24, #F59E0B); }
+
+        .bento-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
             margin-bottom: 12px;
+            font-weight: 600;
         }
 
-        .feature-card p {
+        .bento-card p {
             color: var(--text-secondary);
             line-height: 1.7;
+            font-size: 1rem;
         }
 
         /* ===== PRICING SECTION ===== */
         .pricing {
-            padding: 120px 40px;
+            padding: 140px 40px;
             background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse 60% 40% at 30% 30%, rgba(255,107,53,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 30% at 70% 70%, rgba(124,58,237,0.05) 0%, transparent 50%);
         }
 
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 32px;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
         }
 
         .pricing-card {
             background: var(--bg);
-            border: 2px solid var(--border);
-            border-radius: 24px;
-            padding: 40px;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 48px 40px;
             text-align: center;
             position: relative;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .pricing-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.15);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25);
         }
 
         .pricing-card.popular {
-            border-color: var(--primary);
-            background: linear-gradient(180deg, rgba(255, 107, 53, 0.05) 0%, var(--bg) 100%);
+            border: 2px solid var(--primary);
+            background: linear-gradient(180deg, rgba(255,107,53,0.05) 0%, var(--bg) 40%);
+            box-shadow: 0 0 60px rgba(255,107,53,0.15);
         }
 
         .pricing-card.popular::before {
-            content: 'BEST VALUE';
+            content: 'MOST POPULAR';
             position: absolute;
             top: -14px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--gradient-primary);
             color: white;
-            padding: 8px 20px;
+            padding: 8px 24px;
             border-radius: 100px;
             font-size: 0.75rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.05em;
+            box-shadow: 0 8px 20px var(--glow-primary);
         }
 
         .pricing-card h3 {
-            font-size: 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
             margin-bottom: 8px;
-            color: var(--text);
         }
 
         .pricing-card .period {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .price {
-            margin-bottom: 24px;
-        }
-
-        .price .amount {
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--text);
-            line-height: 1;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 4px;
         }
 
         .price .currency {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--text-secondary);
-            vertical-align: super;
+        }
+
+        .price .amount {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: -0.02em;
         }
 
         .price .term {
             font-size: 1.1rem;
-            color: var(--text-secondary);
+            color: var(--text-muted);
+            margin-left: 4px;
         }
 
         .price-note {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--accent);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             font-weight: 600;
         }
 
         .pricing-features {
             list-style: none;
             text-align: left;
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
 
         .pricing-features li {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 0;
+            gap: 14px;
+            padding: 14px 0;
             border-bottom: 1px solid var(--border);
             color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         .pricing-features li:last-child {
@@ -816,30 +1029,32 @@
         .pricing-btn {
             display: block;
             width: 100%;
-            padding: 16px 32px;
+            padding: 18px 32px;
             border-radius: 14px;
             font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
         }
 
         .pricing-btn.primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            background: var(--gradient-primary);
             color: white;
-            box-shadow: 0 4px 20px var(--glow);
+            box-shadow: 0 8px 24px var(--glow-primary);
         }
 
         .pricing-btn.primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--glow);
+            box-shadow: 0 12px 32px var(--glow-primary);
         }
 
         .pricing-btn.secondary {
             background: var(--surface);
             color: var(--text);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-light);
         }
 
         .pricing-btn.secondary:hover {
@@ -849,14 +1064,13 @@
 
         /* ===== HOW IT WORKS ===== */
         .how-it-works {
-            padding: 120px 40px;
-            background: var(--bg);
+            padding: 140px 40px;
         }
 
         .steps {
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 80px;
             max-width: 1100px;
             margin: 0 auto;
             position: relative;
@@ -865,13 +1079,13 @@
         .steps::before {
             content: '';
             position: absolute;
-            top: 70px;
-            left: 18%;
-            right: 18%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            top: 80px;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent-cyan));
             z-index: 0;
-            border-radius: 2px;
+            border-radius: 1px;
         }
 
         .step {
@@ -883,22 +1097,40 @@
         }
 
         .step-number {
-            width: 140px;
-            height: 140px;
+            width: 160px;
+            height: 160px;
             background: var(--bg);
-            border: 3px solid var(--primary);
+            border: 2px solid var(--surface);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 28px;
-            transition: all 0.4s ease;
+            margin: 0 auto 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .step-number::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
         }
 
         .step:hover .step-number {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            transform: scale(1.08);
-            box-shadow: 0 15px 40px var(--glow);
+            background: var(--gradient-primary);
+            border-color: transparent;
+            transform: scale(1.1);
+            box-shadow: 0 20px 50px var(--glow-primary);
+        }
+
+        .step:hover .step-number::before {
+            opacity: 0.3;
+            filter: blur(20px);
         }
 
         .step:hover .step-number svg {
@@ -906,19 +1138,22 @@
         }
 
         .step h3 {
-            font-size: 1.4rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
             margin-bottom: 12px;
+            font-weight: 600;
         }
 
         .step p {
             color: var(--text-secondary);
             font-size: 1rem;
+            line-height: 1.6;
         }
 
         /* ===== STATS ===== */
         .stats {
-            padding: 80px 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 100px 40px;
+            background: var(--gradient-primary);
             position: relative;
             overflow: hidden;
         }
@@ -930,13 +1165,25 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0,0,0,0.1) 0%, transparent 50%);
+        }
+
+        .stats::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M20 0v40M0 20h40'/%3E%3C/g%3E%3C/svg%3E");
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
+            gap: 48px;
             max-width: 1100px;
             margin: 0 auto;
             text-align: center;
@@ -945,23 +1192,23 @@
         }
 
         .stat h3 {
-            font-size: 3.8rem;
-            font-weight: 900;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
             margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
         .stat p {
-            opacity: 0.95;
+            opacity: 0.9;
             font-size: 1.1rem;
             font-weight: 500;
         }
 
         /* ===== CTA SECTION ===== */
         .cta {
-            padding: 120px 40px;
+            padding: 160px 40px;
             text-align: center;
-            background: var(--bg);
             position: relative;
         }
 
@@ -972,31 +1219,34 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.08) 0%, transparent 60%);
+            background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,107,53,0.1) 0%, transparent 70%);
         }
 
         .cta-content {
             position: relative;
             z-index: 1;
-            max-width: 750px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .cta h2 {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
         }
 
         .cta p {
             font-size: 1.3rem;
             color: var(--text-secondary);
-            margin-bottom: 40px;
+            margin-bottom: 48px;
+            line-height: 1.7;
         }
 
         /* ===== FOOTER ===== */
         footer {
-            padding: 60px 40px;
+            padding: 80px 40px 40px;
             background: var(--bg-secondary);
             border-top: 1px solid var(--border);
         }
@@ -1011,14 +1261,16 @@
 
         .footer-brand p {
             color: var(--text-secondary);
-            margin-top: 16px;
+            margin-top: 20px;
             line-height: 1.8;
+            font-size: 0.95rem;
         }
 
         .footer-links h4 {
-            font-size: 1rem;
-            margin-bottom: 20px;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
             color: var(--text);
+            font-weight: 600;
         }
 
         .footer-links ul {
@@ -1026,13 +1278,14 @@
         }
 
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .footer-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
 
         .footer-links a:hover {
@@ -1041,27 +1294,27 @@
 
         .footer-bottom {
             max-width: 1200px;
-            margin: 40px auto 0;
-            padding-top: 30px;
+            margin: 60px auto 0;
+            padding-top: 32px;
             border-top: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
         .social-links {
             display: flex;
-            gap: 14px;
+            gap: 12px;
         }
 
         .social-links a {
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1070,9 +1323,11 @@
         }
 
         .social-links a:hover {
-            background: var(--primary);
-            border-color: var(--primary);
+            background: var(--gradient-primary);
+            border-color: transparent;
             color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--glow-primary);
         }
 
         /* ===== MOBILE MENU ===== */
@@ -1086,21 +1341,22 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 60px;
             }
 
             .hero-text {
                 max-width: 100%;
             }
 
-            .hero-buttons {
-                justify-content: center;
+            .hero-description {
+                max-width: 100%;
             }
 
-            .store-buttons {
+            .hero-buttons, .store-buttons {
                 justify-content: center;
             }
 
@@ -1109,16 +1365,23 @@
             }
 
             .phone-mockup {
-                width: 280px;
-                height: 580px;
+                transform: none;
+            }
+
+            .phone-wrapper:hover .phone-mockup {
+                transform: none;
             }
 
             .floating-card {
                 display: none;
             }
 
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bento-card.large {
+                grid-column: span 1;
             }
 
             .stats-grid {
@@ -1144,44 +1407,48 @@
             }
 
             .hero {
-                padding: 100px 20px 60px;
+                padding: 120px 20px 80px;
             }
 
             .hero h1 {
-                font-size: 2.6rem;
+                font-size: 2.8rem;
             }
 
             .hero-description {
                 font-size: 1.1rem;
             }
 
+            .store-buttons {
+                flex-direction: column;
+            }
+
+            .store-btn {
+                justify-content: center;
+            }
+
             .features, .how-it-works, .cta, .pricing {
-                padding: 80px 20px;
+                padding: 100px 20px;
+            }
+
+            .section-header h2, .cta h2 {
+                font-size: 2.4rem;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
             }
 
             .pricing-grid {
                 grid-template-columns: 1fr;
             }
 
-            .pricing-card {
-                padding: 32px 24px;
-            }
-
             .price .amount {
-                font-size: 3rem;
-            }
-
-            .section-header h2, .cta h2 {
-                font-size: 2.2rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
+                font-size: 4rem;
             }
 
             .steps {
                 flex-direction: column;
-                gap: 40px;
+                gap: 48px;
             }
 
             .steps::before {
@@ -1194,11 +1461,11 @@
 
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 30px;
+                gap: 32px;
             }
 
             .stat h3 {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
 
             .footer-content {
@@ -1208,23 +1475,17 @@
 
             .footer-bottom {
                 flex-direction: column;
-                gap: 20px;
+                gap: 24px;
                 text-align: center;
-            }
-
-            .stores-section {
-                padding: 40px 20px;
-            }
-
-            .store-logos {
-                gap: 30px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="bg-gradient"></div>
+
     <!-- Navigation -->
-    <nav>
+    <nav id="navbar">
         <a href="#" class="logo">
             <div class="logo-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
@@ -1244,7 +1505,7 @@
             <li><a href="support.html">Support</a></li>
         </ul>
         <a href="#download" class="nav-cta">Get the App</a>
-        <button class="mobile-menu-btn">
+        <button class="mobile-menu-btn" aria-label="Menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="3" y1="12" x2="21" y2="12"/>
                 <line x1="3" y1="6" x2="21" y2="6"/>
@@ -1272,7 +1533,7 @@
                             <polyline points="7 10 12 15 17 10"/>
                             <line x1="12" y1="15" x2="12" y2="3"/>
                         </svg>
-                        Download Now
+                        Download Free
                     </a>
                     <a href="#pricing" class="btn btn-secondary">
                         View Pricing
@@ -1300,90 +1561,92 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="phone-notch"></div>
-                        <div class="app-header">
-                            <div class="app-header-row">
-                                <div class="app-logo-mini">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
-                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
-                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
-                                    </svg>
+                <div class="phone-wrapper">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="app-header">
+                                <div class="app-header-row">
+                                    <div class="app-logo-mini">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                                            <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                            <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                        </svg>
+                                    </div>
+                                    <h3>BeatPrix</h3>
                                 </div>
-                                <h3>BeatPrix</h3>
-                            </div>
-                            <div class="search-bar-demo">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5">
-                                    <circle cx="11" cy="11" r="8"/>
-                                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                                </svg>
-                                <span>Search games...</span>
-                            </div>
-                        </div>
-                        <div class="app-content">
-                            <div class="section-title-demo">
-                                <h4>Hot Deals</h4>
-                                <a href="#">See All</a>
-                            </div>
-                            <div class="game-card-demo">
-                                <div class="game-thumb">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
-                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
-                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                <div class="search-bar-demo">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" opacity="0.5">
+                                        <circle cx="11" cy="11" r="8"/>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
                                     </svg>
+                                    <span>Search games...</span>
                                 </div>
-                                <div class="game-info">
-                                    <h5>Elden Ring</h5>
-                                    <div class="game-meta">
-                                        <span class="metacritic">96</span>
-                                        <span class="game-rating">Very Positive</span>
+                            </div>
+                            <div class="app-content">
+                                <div class="section-title-demo">
+                                    <h4>Hot Deals</h4>
+                                    <a href="#">See All</a>
+                                </div>
+                                <div class="game-card-demo">
+                                    <div class="game-thumb">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
+                                            <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                            <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                        </svg>
+                                    </div>
+                                    <div class="game-info">
+                                        <h5>Elden Ring</h5>
+                                        <div class="game-meta">
+                                            <span class="metacritic">96</span>
+                                            <span class="game-rating">Very Positive</span>
+                                        </div>
+                                    </div>
+                                    <div class="game-price">
+                                        <span class="discount-badge">-40%</span>
+                                        <div class="current-price">$35.99</div>
+                                        <div class="original-price">$59.99</div>
                                     </div>
                                 </div>
-                                <div class="game-price">
-                                    <span class="discount-badge">-40%</span>
-                                    <div class="current-price">$35.99</div>
-                                    <div class="original-price">$59.99</div>
-                                </div>
-                            </div>
-                            <div class="game-card-demo">
-                                <div class="game-thumb">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
-                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
-                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
-                                    </svg>
-                                </div>
-                                <div class="game-info">
-                                    <h5>Baldur's Gate 3</h5>
-                                    <div class="game-meta">
-                                        <span class="metacritic">96</span>
-                                        <span class="game-rating">Overwhelm+</span>
+                                <div class="game-card-demo">
+                                    <div class="game-thumb">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
+                                            <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                            <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                        </svg>
+                                    </div>
+                                    <div class="game-info">
+                                        <h5>Baldur's Gate 3</h5>
+                                        <div class="game-meta">
+                                            <span class="metacritic">96</span>
+                                            <span class="game-rating">Overwhelm+</span>
+                                        </div>
+                                    </div>
+                                    <div class="game-price">
+                                        <span class="discount-badge">-25%</span>
+                                        <div class="current-price">$44.99</div>
+                                        <div class="original-price">$59.99</div>
                                     </div>
                                 </div>
-                                <div class="game-price">
-                                    <span class="discount-badge">-25%</span>
-                                    <div class="current-price">$44.99</div>
-                                    <div class="original-price">$59.99</div>
-                                </div>
-                            </div>
-                            <div class="game-card-demo">
-                                <div class="game-thumb">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
-                                        <rect x="6" y="11" width="4" height="6" rx="1"/>
-                                        <rect x="14" y="11" width="4" height="6" rx="1"/>
-                                    </svg>
-                                </div>
-                                <div class="game-info">
-                                    <h5>Cyberpunk 2077</h5>
-                                    <div class="game-meta">
-                                        <span class="metacritic" style="background:#FFCC33;color:#000;">86</span>
-                                        <span class="game-rating">Very Positive</span>
+                                <div class="game-card-demo">
+                                    <div class="game-thumb">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" opacity="0.6">
+                                            <rect x="6" y="11" width="4" height="6" rx="1"/>
+                                            <rect x="14" y="11" width="4" height="6" rx="1"/>
+                                        </svg>
                                     </div>
-                                </div>
-                                <div class="game-price">
-                                    <span class="discount-badge">-50%</span>
-                                    <div class="current-price">$29.99</div>
-                                    <div class="original-price">$59.99</div>
+                                    <div class="game-info">
+                                        <h5>Cyberpunk 2077</h5>
+                                        <div class="game-meta">
+                                            <span class="metacritic" style="background:#FFCC33;color:#000;">86</span>
+                                            <span class="game-rating">Very Positive</span>
+                                        </div>
+                                    </div>
+                                    <div class="game-price">
+                                        <span class="discount-badge">-50%</span>
+                                        <div class="current-price">$29.99</div>
+                                        <div class="original-price">$59.99</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1424,68 +1687,60 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-header">
+            <span class="section-label">Features</span>
             <h2>Built for Gamers</h2>
             <p>Everything you need to find the best deals and never overpay for games again</p>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
+        <div class="bento-grid">
+            <div class="bento-card large">
                 <div class="feature-icon compare">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                         <line x1="18" y1="20" x2="18" y2="10"/>
                         <line x1="12" y1="20" x2="12" y2="4"/>
                         <line x1="6" y1="20" x2="6" y2="14"/>
                     </svg>
                 </div>
                 <h3>Real-Time Price Comparison</h3>
-                <p>Compare prices across 30+ stores instantly. See the best deal including historical lows and current sales.</p>
+                <p>Compare prices across 30+ stores instantly. See the best deal including historical lows and current sales. Never miss a discount again with our comprehensive price tracking.</p>
             </div>
-            <div class="feature-card">
+            <div class="bento-card">
                 <div class="feature-icon alert">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
                         <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
                     </svg>
                 </div>
                 <h3>Price Drop Alerts</h3>
-                <p>Set your target price and get notified the instant it drops. Never miss a sale on games you're waiting for.</p>
+                <p>Set your target price and get notified instantly when it drops.</p>
             </div>
-            <div class="feature-card">
+            <div class="bento-card">
                 <div class="feature-icon history">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#58A6FF" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                     </svg>
                 </div>
                 <h3>Price History Charts</h3>
-                <p>See how prices have changed over time. Know if you're getting a good deal or should wait for a better sale.</p>
+                <p>See how prices have changed over time and make informed decisions.</p>
             </div>
-            <div class="feature-card">
+            <div class="bento-card">
                 <div class="feature-icon watchlist">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F05050" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                     </svg>
                 </div>
                 <h3>Watchlist</h3>
-                <p>Save games you're interested in. Track prices and see when they hit your target or go on sale.</p>
+                <p>Save games you're interested in and track prices automatically.</p>
             </div>
-            <div class="feature-card">
+            <div class="bento-card large">
                 <div class="feature-icon stores">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B00FF" stroke-width="2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                         <line x1="3" y1="9" x2="21" y2="9"/>
                         <line x1="9" y1="21" x2="9" y2="9"/>
                     </svg>
                 </div>
-                <h3>All Major Stores</h3>
-                <p>Steam, GOG, Epic Games, Humble Bundle, Fanatical, Green Man Gaming, and 24+ more stores in one place.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon free">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFD700" stroke-width="2">
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                    </svg>
-                </div>
-                <h3>Deal Ratings</h3>
-                <p>Our smart algorithm rates every deal so you know instantly if it's worth buying now or better to wait.</p>
+                <h3>All Major Stores in One Place</h3>
+                <p>Steam, GOG, Epic Games, Humble Bundle, Fanatical, Green Man Gaming, and 24+ more stores. We compare prices across all major PC game retailers so you don't have to.</p>
             </div>
         </div>
     </section>
@@ -1493,7 +1748,8 @@
     <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <div class="section-header">
-            <h2>Simple Pricing</h2>
+            <span class="section-label">Pricing</span>
+            <h2>Simple, Fair Pricing</h2>
             <p>Start with a free trial. Unlock unlimited features for less than a coffee.</p>
         </div>
         <div class="pricing-grid">
@@ -1501,38 +1757,38 @@
                 <h3>Monthly</h3>
                 <p class="period">Flexible month-to-month</p>
                 <div class="price">
-                    <span class="currency">€</span><span class="amount">1.99</span><span class="term">/month</span>
+                    <span class="currency">$</span><span class="amount">1.99</span><span class="term">/mo</span>
                 </div>
                 <ul class="pricing-features">
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Unlimited price comparisons
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Unlimited price alerts
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Full price history charts
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         30+ stores compared
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
-                        No ads
+                        Ad-free experience
                     </li>
                 </ul>
                 <a href="#download" class="pricing-btn secondary">Get Started</a>
@@ -1541,39 +1797,39 @@
                 <h3>Yearly</h3>
                 <p class="period">Best value - save 37%</p>
                 <div class="price">
-                    <span class="currency">€</span><span class="amount">14.99</span><span class="term">/year</span>
+                    <span class="currency">$</span><span class="amount">14.99</span><span class="term">/yr</span>
                 </div>
-                <p class="price-note">Only €1.25/month - Save €8.89!</p>
+                <p class="price-note">Only $1.25/month - Save $8.89!</p>
                 <ul class="pricing-features">
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Unlimited price comparisons
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Unlimited price alerts
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         Full price history charts
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
                         30+ stores compared
                     </li>
                     <li>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3FB950" stroke-width="2.5">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
                             <polyline points="20 6 9 17 4 12"/>
                         </svg>
-                        No ads
+                        Ad-free experience
                     </li>
                 </ul>
                 <a href="#download" class="pricing-btn primary">Get Started</a>
@@ -1584,8 +1840,9 @@
     <!-- How It Works -->
     <section class="how-it-works" id="how-it-works">
         <div class="section-header">
-            <h2>How It Works</h2>
-            <p>Find the best game deals in seconds</p>
+            <span class="section-label">How It Works</span>
+            <h2>Find Deals in Seconds</h2>
+            <p>Three simple steps to never overpay for games again</p>
         </div>
         <div class="steps">
             <div class="step">
@@ -1637,7 +1894,7 @@
                 <p>Average Savings</p>
             </div>
             <div class="stat">
-                <h3>€1.25</h3>
+                <h3>$1.25</h3>
                 <p>Per Month</p>
             </div>
         </div>
@@ -1647,7 +1904,7 @@
     <section class="cta">
         <div class="cta-content">
             <h2>Stop Overpaying for Games</h2>
-            <p>Join thousands of gamers who never miss a deal. Download BeatPrix today and start saving on every game purchase.</p>
+            <p>Join thousands of smart gamers who never miss a deal. Download BeatPrix today and start saving on every game purchase.</p>
             <div class="store-buttons" style="justify-content: center;">
                 <a href="#" class="store-btn">
                     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -1691,6 +1948,7 @@
                 <h4>Product</h4>
                 <ul>
                     <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#how-it-works">How It Works</a></li>
                     <li><a href="#download">Download</a></li>
                 </ul>
@@ -1733,5 +1991,39 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth reveal on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.bento-card, .pricing-card, .step, .stat').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
