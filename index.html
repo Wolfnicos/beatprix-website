@@ -141,12 +141,12 @@
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: var(--gradient-primary);
-            border-radius: 14px;
+            background: #FF6B35;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 32px var(--glow-primary);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -490,12 +490,12 @@
         .app-logo-mini {
             width: 36px;
             height: 36px;
-            background: var(--gradient-primary);
+            background: #FF6B35;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 12px var(--glow-primary);
+            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
         }
 
         .app-header h3 {
@@ -1488,8 +1488,14 @@
     <nav id="navbar">
         <a href="#" class="logo">
             <div class="logo-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="6" width="20" height="12" rx="4"/>
+                    <path d="M6 10v4"/>
+                    <path d="M4 12h4"/>
+                    <circle cx="17" cy="10" r="1" fill="white" stroke="none"/>
+                    <circle cx="17" cy="14" r="1" fill="white" stroke="none"/>
+                    <circle cx="15" cy="12" r="1" fill="white" stroke="none"/>
+                    <circle cx="19" cy="12" r="1" fill="white" stroke="none"/>
                 </svg>
             </div>
             BeatPrix
@@ -1564,8 +1570,14 @@
                             <div class="app-header">
                                 <div class="app-header-row">
                                     <div class="app-logo-mini">
-                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                                            <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="2" y="6" width="20" height="12" rx="4"/>
+                                            <path d="M6 10v4"/>
+                                            <path d="M4 12h4"/>
+                                            <circle cx="17" cy="10" r="1" fill="white" stroke="none"/>
+                                            <circle cx="17" cy="14" r="1" fill="white" stroke="none"/>
+                                            <circle cx="15" cy="12" r="1" fill="white" stroke="none"/>
+                                            <circle cx="19" cy="12" r="1" fill="white" stroke="none"/>
                                         </svg>
                                     </div>
                                     <h3>BeatPrix</h3>
@@ -1752,7 +1764,7 @@
                 <h3>Monthly</h3>
                 <p class="period">Flexible month-to-month</p>
                 <div class="price">
-                    <span class="currency">€</span><span class="amount">4.99</span><span class="term">/mo</span>
+                    <span class="currency">€</span><span class="amount">2.99</span><span class="term">/mo</span>
                 </div>
                 <ul class="pricing-features">
                     <li>
@@ -1790,11 +1802,11 @@
             </div>
             <div class="pricing-card popular">
                 <h3>Yearly</h3>
-                <p class="period">Best value - save 50%</p>
+                <p class="period">Best value - save 44%</p>
                 <div class="price">
-                    <span class="currency">€</span><span class="amount">29.99</span><span class="term">/yr</span>
+                    <span class="currency">€</span><span class="amount">19.99</span><span class="term">/yr</span>
                 </div>
-                <p class="price-note">Only €2.50/month - Save 50%!</p>
+                <p class="price-note">Only €1.67/month - Save 44%!</p>
                 <ul class="pricing-features">
                     <li>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
@@ -1889,7 +1901,7 @@
                 <p>Average Savings</p>
             </div>
             <div class="stat">
-                <h3>€2.50</h3>
+                <h3>€1.67</h3>
                 <p>Per Month</p>
             </div>
         </div>
@@ -1929,8 +1941,14 @@
             <div class="footer-brand">
                 <a href="#" class="logo">
                     <div class="logo-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                            <path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="6" width="20" height="12" rx="4"/>
+                            <path d="M6 10v4"/>
+                            <path d="M4 12h4"/>
+                            <circle cx="17" cy="10" r="1" fill="white" stroke="none"/>
+                            <circle cx="17" cy="14" r="1" fill="white" stroke="none"/>
+                            <circle cx="15" cy="12" r="1" fill="white" stroke="none"/>
+                            <circle cx="19" cy="12" r="1" fill="white" stroke="none"/>
                         </svg>
                     </div>
                     BeatPrix
